@@ -1,0 +1,19 @@
+---
+# tasks file for ansible-role-sshd
+
+- include_vars: "{{ ansible_os_family }}.yml"
+
+- include: install-FreeBSD.yml
+  when: ansible_os_family == 'FreeBSD'
+
+- name: Create sshd.conf
+  template:
+    src: sshd_config.j2
+    dest: "{{ sshd_conf }}"
+  notify: Restart sshd
+
+- name: Start sshd
+  service:
+    name: "{{ sshd_service }}"
+    enabled: true
+    state: started

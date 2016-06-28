@@ -1,0 +1,14 @@
+sshd_user: sshd
+sshd_group: "{{ __sshd_group }}"
+sshd_service: "{{ __sshd_service }}"
+sshd_conf_dir: "{{ __sshd_conf_dir }}"
+sshd_conf: "{{ sshd_conf_dir }}/sshd_config"
+
+sshd_sftp_server: "{{ __sshd_sftp_server }}"
+
+sshd_config:
+  PermitRootLogin: without-password
+  PasswordAuthentication: "no"
+  UseDNS: "no"
+  UsePAM: "no"
+  Subsystem: "sftp {{ sshd_sftp_server }}"
