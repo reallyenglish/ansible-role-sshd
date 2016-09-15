@@ -4,7 +4,6 @@
 - include_vars: "{{ ansible_os_family }}.yml"
 
 - include: install-FreeBSD.yml
-  when: ansible_os_family == 'FreeBSD'
 
 - name: Create sshd.conf
   template:
