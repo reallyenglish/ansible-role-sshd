@@ -18,8 +18,6 @@ provisioner:
     - extra_modules
     - filter_plugins
   ansible_vault_password_file: <%= File.expand_path(ENV['ANSIBLE_VAULT_PASSWORD_FILE']) %>
-  extra_vars:
-    ansible_python_interpreter: '/usr/local/bin/python'
 
 platforms:
   - name: ansible-freebsd-10.3-amd64
@@ -29,6 +27,9 @@ platforms:
     driver_config:
       ssh:
         shell: '/bin/sh'
+    provisioner:
+      extra_vars:
+        ansible_python_interpreter: '/usr/local/bin/python'
 
 suites:
   - name: default
