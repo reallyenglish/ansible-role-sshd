@@ -9,7 +9,7 @@
   template:
     src: sshd_config.j2
     dest: "{{ sshd_conf }}"
-    validate: /usr/sbin/sshd -t
+    validate: /usr/sbin/sshd -t -f %s
   notify: Restart sshd
 
 - name: Start sshd
