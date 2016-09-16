@@ -10,12 +10,12 @@ ports   = [ 22 ]
 sftp_server = '/usr/lib/openssh/sftp-server'
 
 case os[:family]
-when 'freebsd'
+when 'freebsd', 'openbsd'
   sftp_server = '/usr/libexec/sftp-server'
 end
 
 case os[:family]
-when 'freebsd'
+when 'freebsd', 'openbsd'
 else
   describe package(package) do
     it { should be_installed }
@@ -27,8 +27,13 @@ describe file(config) do
   its(:content) { should match /PermitRootLogin without-password/ }
   its(:content) { should match /PasswordAuthentication no/ }
   its(:content) { should match /UseDNS no/ }
-  its(:content) { should match /UsePAM no/ }
   its(:content) { should match /Subsystem sftp #{ sftp_server }/ }
+  case os[:family]
+  when 'openbsd'
+    its(:content) { should_not match /UsePAM no/ }
+  else
+    its(:content) { should match /UsePAM no/ }
+  end
 end
 
 describe service(service) do
