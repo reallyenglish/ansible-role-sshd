@@ -1,4 +1,4 @@
 # Managed by ansible
-{% for k, v in sshd_config | dictsort(true) %}
+{% for k, v in sshd_config | dictsort(true) if not (k == 'UsePAM' and ansible_os_family == 'OpenBSD') %}
 {{ k }} {{ v }}
 {% endfor %}
