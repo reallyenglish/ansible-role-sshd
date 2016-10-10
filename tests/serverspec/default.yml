@@ -2,3 +2,9 @@
   roles:
     - ansible-role-sshd
   vars:
+    sshd_config:
+      PermitRootLogin: without-password
+      PasswordAuthentication: "no"
+      UseDNS: "no"
+      UsePAM: "no"
+      Subsystem: "sftp {{ sshd_sftp_server }}"
