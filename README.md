@@ -1,7 +1,7 @@
 ansible-role-sshd
 =====================
 
-A brief description of the role goes here.
+Configure sshd.
 
 Requirements
 ------------
@@ -11,9 +11,35 @@ None
 Role Variables
 --------------
 
-| variable | description | default |
+| Variable | Description | Default |
 |----------|-------------|---------|
+| sshd\_user | user | sshd |
+| sshd\_group | group | {{ \_\_sshd\_group }} |
+| sshd\_service | service name | {{ \_\_sshd\_service }} |
+| sshd\_conf\_dir | path to config dir | {{ \_\_sshd\_conf\_dir }} |
+| sshd\_conf | path to `sshd_config(5)` | {{ sshd\_conf\_dir }}/sshd\_config |
+| sshd\_sftp\_server | path to sftp binary | {{ \_\_sshd\_sftp\_server }} |
+| sshd\_config | default `ssh_config(5)` | {"PermitRootLogin"=>"without-password", "PasswordAuthentication"=>"no", "UseDNS"=>"no", "UsePAM"=>"no", "Subsystem"=>"sftp {{ sshd\_sftp\_server }}"} |
 
+## FreeBSD
+
+| Variable | Default |
+|----------|---------|
+| \_\_sshd\_group | sshd |
+| \_\_sshd\_conf\_dir | /etc/ssh |
+| \_\_sshd\_sftp\_server | /usr/libexec/sftp-server |
+| \_\_sshd\_service | sshd |
+
+## OpenBSD
+
+| Variable | Default |
+|----------|---------|
+| \_\_sshd\_group | sshd |
+| \_\_sshd\_conf\_dir | /etc/ssh |
+| \_\_sshd\_sftp\_server | /usr/libexec/sftp-server |
+| \_\_sshd\_service | sshd |
+
+Created by [yaml2readme.rb](https://gist.github.com/trombik/b2df709657c08d845b1d3b3916e592d3)
 
 Dependencies
 ------------
@@ -23,6 +49,18 @@ None
 Example Playbook
 ----------------
 
+```yaml
+- hosts: localhost
+  roles:
+    - ansible-role-sshd
+  vars:
+    sshd_config:
+      PermitRootLogin: without-password
+      PasswordAuthentication: "no"
+      UseDNS: "no"
+      UsePAM: "no"
+      Subsystem: "sftp {{ sshd_sftp_server }}"
+```
 
 License
 -------
