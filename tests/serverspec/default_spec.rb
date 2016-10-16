@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'serverspec'
 
 package = 'sshd'
 service = 'sshd'
