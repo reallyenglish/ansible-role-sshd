@@ -1,0 +1,4 @@
+__sshd_group: ssh
+__sshd_conf_dir: /etc/ssh
+__sshd_sftp_server: /usr/lib/sftp-server
+__sshd_service: sshd.service

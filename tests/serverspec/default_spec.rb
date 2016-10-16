@@ -13,6 +13,8 @@ when 'freebsd', 'openbsd'
   sftp_server = '/usr/libexec/sftp-server'
 when 'ubuntu'
   service = 'ssh'
+when 'centos'
+  service = 'sshd.service'
 end
 
 case os[:family]
