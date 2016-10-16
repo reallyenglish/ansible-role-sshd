@@ -21,6 +21,16 @@ Role Variables
 | sshd\_sftp\_server | path to sftp binary | {{ \_\_sshd\_sftp\_server }} |
 | sshd\_config | default `ssh_config(5)` | {"PermitRootLogin"=>"without-password", "PasswordAuthentication"=>"no", "UseDNS"=>"no", "UsePAM"=>"no", "Subsystem"=>"sftp {{ sshd\_sftp\_server }}"} |
 
+## Debian
+
+| Variable | Default |
+|----------|---------|
+| \_\_sshd\_group | ssh |
+| \_\_sshd\_conf\_dir | /etc/ssh |
+| \_\_sshd\_sftp\_server | /usr/lib/sftp-server |
+| \_\_sshd\_service | ssh |
+
+
 ## FreeBSD
 
 | Variable | Default |
@@ -38,6 +48,15 @@ Role Variables
 | \_\_sshd\_conf\_dir | /etc/ssh |
 | \_\_sshd\_sftp\_server | /usr/libexec/sftp-server |
 | \_\_sshd\_service | sshd |
+
+## RedHat
+
+| Variable | Default |
+|----------|---------|
+| \_\_sshd\_group | ssh |
+| \_\_sshd\_conf\_dir | /etc/ssh |
+| \_\_sshd\_sftp\_server | /usr/lib/sftp-server |
+| \_\_sshd\_service | sshd.service |
 
 Created by [yaml2readme.rb](https://gist.github.com/trombik/b2df709657c08d845b1d3b3916e592d3)
 
