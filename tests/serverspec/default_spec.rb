@@ -1,16 +1,18 @@
 require 'spec_helper'
 
-package = 'sshd'
+package = 'openssh-server'
 service = 'sshd'
 config  = '/etc/ssh/sshd_config'
 user    = 'sshd'
 group   = 'sshd'
 ports   = [ 22 ]
-sftp_server = '/usr/lib/openssh/sftp-server'
+sftp_server = '/usr/lib/sftp-server'
 
 case os[:family]
 when 'freebsd', 'openbsd'
   sftp_server = '/usr/libexec/sftp-server'
+when 'ubuntu'
+  service = 'ssh'
 end
 
 case os[:family]
