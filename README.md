@@ -10,16 +10,6 @@ None
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| sshd\_user | user | sshd |
-| sshd\_group | group | {{ \_\_sshd\_group }} |
-| sshd\_service | service name | {{ \_\_sshd\_service }} |
-| sshd\_conf\_dir | path to config dir | {{ \_\_sshd\_conf\_dir }} |
-| sshd\_conf | path to `sshd_config(5)` | {{ sshd\_conf\_dir }}/sshd\_config |
-| sshd\_sftp\_server | path to sftp binary | {{ \_\_sshd\_sftp\_server }} |
-| sshd\_config | default `ssh_config(5)` | {"PermitRootLogin"=>"without-password", "PasswordAuthentication"=>"no", "UseDNS"=>"no", "UsePAM"=>"no", "Subsystem"=>"sftp {{ sshd\_sftp\_server }}"} |
-
-| Variable | Description | Default |
-|----------|-------------|---------|
 | `sshd_user` | user name of `sshd` | `sshd` |
 | `sshd_group` | group name of `sshd` | `{{ __sshd_group }}` |
 | `sshd_service` | service name of `sshd` | `{{ __sshd_service }}` |
