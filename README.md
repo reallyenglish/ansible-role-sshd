@@ -19,7 +19,7 @@ None
 | `sshd_config` | dict of `sshd_config` | `{"PermitRootLogin"=>"without-password", "PasswordAuthentication"=>"no", "UseDNS"=>"no", "UsePAM"=>"no", "Subsystem"=>"sftp {{ sshd_sftp_server }}"}` |
 | `sshd_config_pre` | string of `sshd_config(5)` before `sshd_config` | `""` |
 | `sshd_config_post` | string of `sshd_config(5)` after `sshd_config` | `""` |
-| `ssh_config_match` | list of `Match` keyword. see below | `[]` |
+| `sshd_config_match` | list of `Match` keyword. see below | `[]` |
 
 ## `ssh_config_match`
 
@@ -96,10 +96,20 @@ None
     sshd_config:
       PermitRootLogin: without-password
       PasswordAuthentication: "no"
+      Port: 22
       UseDNS: "no"
       UsePAM: "no"
       Subsystem: "sftp {{ sshd_sftp_server }}"
-    sshd_extra_config: |
+    sshd_config_match:
+      - condition: User foo
+        keyword:
+          X11Forwarding: "yes"
+      - condition: User bar
+        keyword:
+          X11Forwarding: "no"
+    sshd_config_pre: |
+      Port 2022
+    sshd_config_post: |
       Match Address 192.168.1.1
         PasswordAuthentication yes
 ```
