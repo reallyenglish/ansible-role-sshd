@@ -17,6 +17,34 @@ None
 | `sshd_conf` | path to `sshd_config` | `{{ sshd_conf_dir }}/sshd_config` |
 | `sshd_sftp_server` | path to `stfp-server(8)` | `{{ __sshd_sftp_server }}` |
 | `sshd_config` | dict of `sshd_config` | `{"PermitRootLogin"=>"without-password", "PasswordAuthentication"=>"no", "UseDNS"=>"no", "UsePAM"=>"no", "Subsystem"=>"sftp {{ sshd_sftp_server }}"}` |
+| `sshd_config_pre` | string of `sshd_config(5)` before `sshd_config` | `""` |
+| `sshd_config_post` | string of `sshd_config(5)` after `sshd_config` | `""` |
+| `ssh_config_match` | list of `Match` keyword. see below | `[]` |
+
+## `ssh_config_match`
+
+This variable is a list of dict, creates `Match` blocks.
+
+| Key | value |
+|-----|-------|
+| `condition` | condition of the `Match` |
+| `keyword` | dict of directives and values pair |
+
+An example:
+
+```yaml
+sshd_config_match:
+  - condition: User foo
+    keyword:
+      X11Forwarding: "yes"
+```
+
+Which generates a block:
+
+```yaml
+Match User foo
+  X11Forwarding yes
+```
 
 ## Debian
 
@@ -71,6 +99,9 @@ None
       UseDNS: "no"
       UsePAM: "no"
       Subsystem: "sftp {{ sshd_sftp_server }}"
+    sshd_extra_config: |
+      Match Address 192.168.1.1
+        PasswordAuthentication yes
 ```
 
 # License

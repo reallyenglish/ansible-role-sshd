@@ -34,12 +34,17 @@ describe file(config) do
   its(:content) { should match(/^PasswordAuthentication no$/) }
   its(:content) { should match(/^UseDNS no$/) }
   its(:content) { should match(/^Subsystem sftp #{ sftp_server }$/) }
+  its(:content) { should match(/^Port 22$/) }
   case os[:family]
   when "openbsd"
     its(:content) { should_not match(/^UsePAM no$/) }
   else
     its(:content) { should match(/^UsePAM no$/) }
   end
+  its(:content) { should match(/^Port 2022\n\nPasswordAuthentication\s+no\n/) }
+  its(:content) { should match(/^Match User foo\n\s+X11Forwarding yes$/) }
+  its(:content) { should match(/^Match User bar\n\s+X11Forwarding no$/) }
+  its(:content) { should match(/^Match Address 192.168.1.1\n\s+PasswordAuthentication yes$/) }
 end
 
 describe service(service) do

@@ -5,6 +5,19 @@
     sshd_config:
       PermitRootLogin: without-password
       PasswordAuthentication: "no"
+      Port: 22
       UseDNS: "no"
       UsePAM: "no"
       Subsystem: "sftp {{ sshd_sftp_server }}"
+    sshd_config_match:
+      - condition: User foo
+        keyword:
+          X11Forwarding: "yes"
+      - condition: User bar
+        keyword:
+          X11Forwarding: "no"
+    sshd_config_pre: |
+      Port 2022
+    sshd_config_post: |
+      Match Address 192.168.1.1
+        PasswordAuthentication yes

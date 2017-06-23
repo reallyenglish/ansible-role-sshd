@@ -12,3 +12,6 @@ sshd_config:
   UseDNS: "no"
   UsePAM: "no"
   Subsystem: "sftp {{ sshd_sftp_server }}"
+sshd_config_pre: ""
+sshd_config_post: ""
+sshd_config_match: []
