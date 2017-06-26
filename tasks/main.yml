@@ -3,8 +3,6 @@
 
 - include_vars: "{{ ansible_os_family }}.yml"
 
-- include: install-FreeBSD.yml
-
 - name: Create sshd.conf
   template:
     src: sshd_config.j2

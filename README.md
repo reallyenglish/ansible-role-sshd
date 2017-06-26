@@ -10,52 +10,49 @@ None
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| sshd\_user | user | sshd |
-| sshd\_group | group | {{ \_\_sshd\_group }} |
-| sshd\_service | service name | {{ \_\_sshd\_service }} |
-| sshd\_conf\_dir | path to config dir | {{ \_\_sshd\_conf\_dir }} |
-| sshd\_conf | path to `sshd_config(5)` | {{ sshd\_conf\_dir }}/sshd\_config |
-| sshd\_sftp\_server | path to sftp binary | {{ \_\_sshd\_sftp\_server }} |
-| sshd\_config | default `ssh_config(5)` | {"PermitRootLogin"=>"without-password", "PasswordAuthentication"=>"no", "UseDNS"=>"no", "UsePAM"=>"no", "Subsystem"=>"sftp {{ sshd\_sftp\_server }}"} |
+| `sshd_user` | user name of `sshd` | `sshd` |
+| `sshd_group` | group name of `sshd` | `{{ __sshd_group }}` |
+| `sshd_service` | service name of `sshd` | `{{ __sshd_service }}` |
+| `sshd_conf_dir` | path to directory where `sshd` configuration files are kept | `{{ __sshd_conf_dir }}` |
+| `sshd_conf` | path to `sshd_config` | `{{ sshd_conf_dir }}/sshd_config` |
+| `sshd_sftp_server` | path to `stfp-server(8)` | `{{ __sshd_sftp_server }}` |
+| `sshd_config` | dict of `sshd_config` | `{"PermitRootLogin"=>"without-password", "PasswordAuthentication"=>"no", "UseDNS"=>"no", "UsePAM"=>"no", "Subsystem"=>"sftp {{ sshd_sftp_server }}"}` |
 
 ## Debian
 
 | Variable | Default |
 |----------|---------|
-| \_\_sshd\_group | ssh |
-| \_\_sshd\_conf\_dir | /etc/ssh |
-| \_\_sshd\_sftp\_server | /usr/lib/sftp-server |
-| \_\_sshd\_service | ssh |
-
+| `__sshd_group` | `ssh` |
+| `__sshd_conf_dir` | `/etc/ssh` |
+| `__sshd_sftp_server` | `/usr/lib/sftp-server` |
+| `__sshd_service` | `ssh` |
 
 ## FreeBSD
 
 | Variable | Default |
 |----------|---------|
-| \_\_sshd\_group | sshd |
-| \_\_sshd\_conf\_dir | /etc/ssh |
-| \_\_sshd\_sftp\_server | /usr/libexec/sftp-server |
-| \_\_sshd\_service | sshd |
+| `__sshd_group` | `sshd` |
+| `__sshd_conf_dir` | `/etc/ssh` |
+| `__sshd_sftp_server` | `/usr/libexec/sftp-server` |
+| `__sshd_service` | `sshd` |
 
 ## OpenBSD
 
 | Variable | Default |
 |----------|---------|
-| \_\_sshd\_group | sshd |
-| \_\_sshd\_conf\_dir | /etc/ssh |
-| \_\_sshd\_sftp\_server | /usr/libexec/sftp-server |
-| \_\_sshd\_service | sshd |
+| `__sshd_group` | `sshd` |
+| `__sshd_conf_dir` | `/etc/ssh` |
+| `__sshd_sftp_server` | `/usr/libexec/sftp-server` |
+| `__sshd_service` | `sshd` |
 
 ## RedHat
 
 | Variable | Default |
 |----------|---------|
-| \_\_sshd\_group | ssh |
-| \_\_sshd\_conf\_dir | /etc/ssh |
-| \_\_sshd\_sftp\_server | /usr/lib/sftp-server |
-| \_\_sshd\_service | sshd.service |
-
-Created by [yaml2readme.rb](https://gist.github.com/trombik/b2df709657c08d845b1d3b3916e592d3)
+| `__sshd_group` | `ssh` |
+| `__sshd_conf_dir` | `/etc/ssh` |
+| `__sshd_sftp_server` | `/usr/lib/sftp-server` |
+| `__sshd_service` | `sshd.service` |
 
 # Dependencies
 
