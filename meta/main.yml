@@ -8,9 +8,14 @@ galaxy_info:
   platforms:
   - name: FreeBSD
     versions:
+# XXX 11.1 is not supported by galaxy, see
+# https://github.com/ansible/galaxy-issues/issues/296
+#   - 11.1
     - 10.3
   - name: OpenBSD
     versions:
+#   - 6.2
+    - 6.1
     - 6.0
   - name: Ubuntu
     versions:
